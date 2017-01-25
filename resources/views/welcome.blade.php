@@ -41,5 +41,26 @@
                 <div class="title">Laravel 5</div>
             </div>
         </div>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </body>
+
+    <!-- TODO: THIS JAVASCRIPT OUGHT TO BE MOVED TO A MORE CENTRAL LOCATION -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post(
+                    '/tracking',
+                    {
+                        'item_type': 'home',
+                        'item_id': ''
+                    },
+                    function (d, s) {} //TODO: Do something
+            );
+        });
+    </script>
 </html>
